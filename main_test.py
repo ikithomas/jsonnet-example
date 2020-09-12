@@ -21,9 +21,18 @@ class TestMain():
         assert dry_manahttan['ingredients'][0]['qty'] == 1
         assert dry_manahttan['garnish'] == 'Lemon Slice'
 
-    def test_variable(self):
+    def test_variables(self):
         j = to_json('examples/variables.jsonnet')
         mojito = j['Mojito']
         assert len(mojito['ingredients']) == 5
         assert mojito['ingredients'][3]['kind'] == 'Simple Syrup'
         assert mojito['ingredients'][3]['qty'] == 0.5
+
+    def test_references(self):
+        j = to_json('examples/references.jsonnet')
+        fizz = j['Gin Fizz']
+        assert fizz['served'] == 'Tall'
+
+    def test_inner_reference(self):
+        j = to_json('examples/inner-reference.jsonnet')
+        assert j['Martini']['ingredients'][1]['qty'] == 1
