@@ -1,42 +1,36 @@
 // Define a local function.
 // Default arguments are like Python:
-local my_function(x, y=10) = x + y;
+local lbs_to_kg(lbs) = lbs / 2.2;
 
 // Define a local multiline function.
-local multiline_function(x) =
-  // One can nest locals.
-  local temp = x * 2;
-  // Every local ends with a semi-colon.
-  [temp, temp + 1];
+local kg_to_lbs(kg) =
+  kg * 2.2;
 
-local object = {
+local area(x, y) = x * y;
+
+local cat = {
   // A method
-  my_method(x): x * x,
+  meow(name): 'Meow! %s' % name,
 };
 
 {
   // Functions are first class citizens.
-  call_inline_function:
+  first_class_function:
     (function(x) x * x)(5),
 
-  call_multiline_function: multiline_function(4),
+  inline_function: lbs_to_kg(175),
 
-  // Using the variable fetches the function,
-  // the parens call the function.
-  call: my_function(2),
+  multiline_function: kg_to_lbs(73),
 
-  // Like python, parameters can be named at
-  // call time.
-  named_params: my_function(x=2),
+  // Like python, parameters can be named at call time.
   // This allows changing their order
-  named_params2: my_function(y=3, x=2),
+  named_params: area(y=3, x=2),
 
   // object.my_method returns the function,
   // which is then called like any other.
-  call_method1: object.my_method(3),
+  call_method: cat.meow('foo'),
 
-  standard_lib:
-    std.join(' ', std.split('foo/bar', '/')),
+  standard_lib: std.join(' ', std.split('foo/bar', '/')),
   len: [
     std.length('hello'),
     std.length([1, 2, 3]),

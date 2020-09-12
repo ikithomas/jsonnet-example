@@ -65,7 +65,12 @@ class TestMain():
         assert j['str5'] == 'ex1=1.67\nex2=3.00\n'
 
     def test_functions(self):
-        pass
+        j = to_json('examples/functions.jsonnet')
 
-
-
+        assert j['first_class_function'] == 25
+        assert pytest.approx(j['inline_function'], 0.01) == 79.54
+        assert pytest.approx(j['multiline_function'], 0.01) == 160.6
+        assert j['named_params'] == 6
+        assert j['call_method'] == 'Meow! foo'
+        assert j['standard_lib'] == 'foo bar'
+        assert j['len'] == [5, 3]
