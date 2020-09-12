@@ -1,6 +1,7 @@
 {
+  # field without quotes
   cocktails: {
-    // Ingredient quantities are in fl oz.
+    # field with quote
     'Tom Collins': {
       ingredients: [
         { kind: "Farmer's Gin", qty: 1.5 },
@@ -8,9 +9,10 @@
         { kind: 'Simple Syrup', qty: 0.5 },
         { kind: 'Soda', qty: 2 },
         { kind: 'Angostura', qty: 'dash' },
-      ],
+      ], # trailing comma
       garnish: 'Maraschino Cherry',
       served: 'Tall',
+      # Verbatim text block
       description: |||
         The Tom Collins is essentially gin and
         lemonade.  The bitters add complexity.
@@ -24,7 +26,14 @@
       ],
       garnish: 'Maraschino Cherry',
       served: 'Straight Up',
-      description: @'A clear \ red drink.',
+      description: @'A clear \ red drink.', # Vertbatim text
+    },
+    'Dry Manhattan': {
+      ingredients: [
+        { kind: "Dry Red Vermouth", qty: 1 },
+      ],
+      garnish: 'Lemon Slice',
+      served: 'Tall',
     },
   },
 }
