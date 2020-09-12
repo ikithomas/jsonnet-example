@@ -17,6 +17,7 @@ class TestMain():
     def test_syntax(self):
         j = to_json('examples/syntax.jsonnet')
         dry_manahttan = j['cocktails']['Dry Manhattan']
+
         assert len(dry_manahttan['ingredients']) == 1
         assert dry_manahttan['ingredients'][0]['kind'] == 'Dry Red Vermouth'
         assert dry_manahttan['ingredients'][0]['qty'] == 1
@@ -25,6 +26,7 @@ class TestMain():
     def test_variables(self):
         j = to_json('examples/variables.jsonnet')
         mojito = j['Mojito']
+
         assert len(mojito['ingredients']) == 5
         assert mojito['ingredients'][3]['kind'] == 'Simple Syrup'
         assert mojito['ingredients'][3]['qty'] == 0.5
@@ -32,10 +34,12 @@ class TestMain():
     def test_references(self):
         j = to_json('examples/references.jsonnet')
         fizz = j['Gin Fizz']
+
         assert fizz['served'] == 'Tall'
 
     def test_inner_reference(self):
         j = to_json('examples/inner-reference.jsonnet')
+
         assert j['Martini']['ingredients'][1]['qty'] == 1
 
     def test_arithmetic(self):
@@ -59,4 +63,9 @@ class TestMain():
         assert j['str3'] == 'ex1=1.67, ex2=3.00'
         assert j['str4'] == 'ex1=1.67, ex2=3.00'
         assert j['str5'] == 'ex1=1.67\nex2=3.00\n'
+
+    def test_functions(self):
+        pass
+
+
 
