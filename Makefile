@@ -10,4 +10,4 @@ test:
 	@venv/bin/pytest --tb=native -v
 
 lint:
-	@pylint bin/image_gc*
+	@pylint *.py
