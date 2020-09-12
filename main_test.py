@@ -47,12 +47,12 @@ class TestMain():
 
         assert j['concat_array'] == [1, 2, 3, 4]
         assert j['concat_string'] == '1234'
-        assert j['equality1'] == False
-        assert j['equality2'] == True
+        assert not j['equality1']
+        assert j['equality2']
         assert pytest.approx(j['ex1'], 0.01) == 1.66
         assert j['ex2'] == 3
         assert j['ex3'] == 1
-        assert j['ex4'] == True
+        assert j['ex4']
         assert j['obj'] == {
             'a': 1,
             'b': 3,
