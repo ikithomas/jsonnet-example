@@ -74,3 +74,17 @@ class TestMain():
         assert j['call_method'] == 'Meow! foo'
         assert j['standard_lib'] == 'foo bar'
         assert j['len'] == [5, 3]
+
+    def test_sours(self):
+        j = to_json('examples/sours.jsonnet')
+
+        assert j['Pisco Sour'] == {
+            'garnish': 'Angostura bitters',
+            'ingredients': [
+                {'kind': 'Machu Pisco', 'qty': 2},
+                {'kind': 'Egg white', 'qty': 1},
+                {'kind': 'Lemon Juice', 'qty': 1},
+                {'kind': 'Simple Syrup', 'qty': 1},
+            ],
+            'served': 'Straight Up'
+       }

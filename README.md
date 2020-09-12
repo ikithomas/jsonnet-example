@@ -15,4 +15,3 @@ brew install jsonnet
 # generate json from jsonnet file
 jsonnet syntax.jsonnet
 ```
-
