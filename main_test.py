@@ -3,12 +3,17 @@ import json
 import pytest
 
 
-def to_json(jsonnet_path):
+def to_json(jsonnet_path, *args):
+    cmd = ['jsonnet', jsonnet_path]
+    if args is not None:
+        cmd.extend(args)
+
     json_str = subprocess.run(
-        ['jsonnet', jsonnet_path],
+        cmd,
         stdout=subprocess.PIPE,
         check=True,
-        universal_newlines=True).stdout
+        universal_newlines=True
+    ).stdout
     print(json_str)
     return json.loads(json_str)
 
@@ -238,3 +243,13 @@ class TestErrors():
     def test_error(self, subject):
         assert len(subject['equal_parts']) == 1
 
+
+class TestExternalVariables():
+    @pytest.fixture
+    def subject(self):
+        return to_json('examples/external-variables/top-level-ext.jsonnet',
+                       '--ext-str', 'prefix=Happy Hour ',
+                       '--ext-code', 'brunch= true')
+
+    def test_external_variables(self, subject):
+        assert subject['Happy Hour Bloody Mary']['served'] == 'Tall'
