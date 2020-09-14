@@ -194,9 +194,26 @@ class TestComprehensions():
             'f8': True,
         }
         assert obj['mixture'] == {
-         'a': 0,
-         'b': 0,
-         'c': 0,
-         'f': 1,
-         'g': 2
-      }
+           'a': 0,
+           'b': 0,
+           'c': 0,
+           'f': 1,
+           'g': 2
+        }
+
+
+class TestImports():
+    @pytest.fixture
+    def vodka_martini(self):
+        return to_json('examples/imports/imports.jsonnet')['Vodka Martini']
+
+    @pytest.fixture
+    def manhattan(self):
+        return to_json('examples/imports/imports.jsonnet')['Manhattan']
+
+    def test_vodka_martini(self, vodka_martini):
+        assert vodka_martini['garnish'] == 'Olive'
+        assert vodka_martini['served'] == 'Straight Up'
+
+    def test_manhattan(self, manhattan):
+        assert manhattan['garnish'] == 'Maraschino Cherry'
