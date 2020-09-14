@@ -1,7 +1,6 @@
 local lib = import 'library-tla.libsonnet';
 
-// Here is the top-level function, note brunch
-// now has a default value.
+// Here is the top-level function, note brunch now has a default value.
 function(prefix, brunch=false) {
 
   [prefix + 'Pina Colada']: {
