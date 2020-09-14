@@ -170,3 +170,33 @@ class TestComputedFields():
 
     def test_unsalted(self, subject):
         assert 'garnish' not in subject['Margarita Unsalted']
+
+
+class TestComprehensions():
+    @pytest.fixture
+    def array(self):
+        return to_json('examples/comprehensions.jsonnet')['array']
+
+    @pytest.fixture
+    def obj(self):
+        return to_json('examples/comprehensions.jsonnet')['object']
+
+    def test_array_comprehension(self, array):
+        assert array['evens'] == [6, 8]
+        assert array['odds'] == [5, 7]
+        assert array['higher'] == [8, 9, 10, 11]
+        assert array['lower'] == [2, 3, 4, 5]
+        assert array['evens_and_odds'] == ['6-5', '6-7', '8-5', '8-7']
+
+    def test_object_comprehension(self, obj):
+        assert obj['evens'] == {
+            'f6': True,
+            'f8': True,
+        }
+        assert obj['mixture'] == {
+         'a': 0,
+         'b': 0,
+         'c': 0,
+         'f': 1,
+         'g': 2
+      }
