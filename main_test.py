@@ -300,3 +300,24 @@ class TestObjectOriented():
         assert deluxe_sour['ingredients'][2]['qty'] == 0.5
 
 
+class TestMixins():
+    @pytest.fixture
+    def whiskey_sour(self):
+        j = to_json('examples/mixins/mixins.jsonnet')
+        return j['Whiskey Sour']
+
+    @pytest.fixture
+    def virgin_daiquiri(self):
+        j = to_json('examples/mixins/mixins.jsonnet')
+        return j['Virgin Daiquiri']
+
+    def test_whiskey_sour(self, whiskey_sour):
+        assert whiskey_sour['served'] =='In a plastic cup'
+        assert 'garnish' not in whiskey_sour
+
+    def test_virgin_daiquri(self, virgin_daiquiri):
+        assert virgin_daiquiri['served'] == 'Straight Up'
+        assert 'citrus' not in virgin_daiquiri
+        assert 'spirits' not in virgin_daiquiri
+        assert virgin_daiquiri['ingredients'][0]['kind'] == 'Water'
+        assert virgin_daiquiri['ingredients'][0]['qty'] == 2
