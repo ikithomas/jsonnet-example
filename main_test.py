@@ -283,3 +283,20 @@ class TestObjectOrientedContrived():
     def test_processor(self, processor):
         assert processor['model'] == 'intel i7 9700k'
         assert processor['num_of_core'] == 4
+
+
+class TestObjectOriented():
+    @pytest.fixture
+    def deluxe_sour(self):
+        j = to_json('examples/object-oriented/sours-oo.jsonnet')
+        return j['Deluxe Sour']
+
+    def test_hidden_fields(self, deluxe_sour):
+        assert 'citrus' not in deluxe_sour
+        assert 'spirits' not in deluxe_sour
+
+    def test_sweetener(self, deluxe_sour):
+        assert deluxe_sour['ingredients'][2]['kind'] == 'Gomme Syrup'
+        assert deluxe_sour['ingredients'][2]['qty'] == 0.5
+
+
