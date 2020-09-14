@@ -9,7 +9,7 @@ def to_json(jsonnet_path):
         stdout=subprocess.PIPE,
         check=True,
         universal_newlines=True).stdout
-    # print(json_str)
+    print(json_str)
     return json.loads(json_str)
 
 
@@ -217,3 +217,14 @@ class TestImports():
 
     def test_manhattan(self, manhattan):
         assert manhattan['garnish'] == 'Maraschino Cherry'
+
+
+class TestUtilsFunctions():
+    @pytest.fixture
+    def subject(self):
+        return to_json('examples/utils-functions/negroni.jsonnet')['Negroni']
+
+    def test_negroni(self, subject):
+        assert subject['ingredients'][0]['qty'] == 2
+        assert subject['ingredients'][1]['qty'] == 2
+        assert subject['ingredients'][2]['qty'] == 2
