@@ -228,3 +228,13 @@ class TestUtilsFunctions():
         assert subject['ingredients'][0]['qty'] == 2
         assert subject['ingredients'][1]['qty'] == 2
         assert subject['ingredients'][2]['qty'] == 2
+
+
+class TestErrors():
+    @pytest.fixture
+    def subject(self):
+        return to_json('examples/error.jsonnet')
+
+    def test_error(self, subject):
+        assert len(subject['equal_parts']) == 1
+
