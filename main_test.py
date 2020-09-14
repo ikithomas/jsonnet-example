@@ -144,3 +144,17 @@ class TestObjectConstructor():
             ],
             'served': 'Straight Up'
         }
+
+
+class TestConditionals():
+    @pytest.fixture
+    def subject(self):
+        return to_json('examples/conditionals.jsonnet')
+
+    def test_first_ingrident(self, subject):
+        assert subject['Virgin Mojito']['ingredients'][0]['qty'] == 6
+        assert subject['Large Mojito']['ingredients'][0]['qty'] == 12
+
+    def test_garnish(self, subject):
+        assert subject['Virgin Mojito']['garnish'] is None
+        assert subject['Large Mojito']['garnish'] == 'Lime wedge'
