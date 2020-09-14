@@ -249,7 +249,18 @@ class TestExternalVariables():
     def subject(self):
         return to_json('examples/external-variables/top-level-ext.jsonnet',
                        '--ext-str', 'prefix=Happy Hour ',
-                       '--ext-code', 'brunch= true')
+                       '--ext-code', 'brunch=true')
 
     def test_external_variables(self, subject):
+        assert subject['Happy Hour Bloody Mary']['served'] == 'Tall'
+
+
+class TestTopLevelArguments():
+    @pytest.fixture
+    def subject(self):
+        return to_json('examples/top-level-arguments/tla.jsonnet',
+                       '--tla-str', 'prefix=Happy Hour ',
+                       '--tla-code', 'brunch=true')
+
+    def test_top_level_arguments(self, subject):
         assert subject['Happy Hour Bloody Mary']['served'] == 'Tall'
