@@ -264,3 +264,22 @@ class TestTopLevelArguments():
 
     def test_top_level_arguments(self, subject):
         assert subject['Happy Hour Bloody Mary']['served'] == 'Tall'
+
+
+class TestObjectOrientedContrived():
+    @pytest.fixture
+    def processor(self):
+        return to_json('examples/oo-contrived.jsonnet')['Processor']
+
+    @pytest.fixture
+    def computer(self):
+        return to_json('examples/oo-contrived.jsonnet')['Computer']
+
+    def test_computer(self, computer):
+        assert computer['Processor']['model'] == 'intel i5 8400'
+        assert computer['Processor']['num_of_core'] == 4
+        assert computer['num_of_ram_slot'] == 2
+
+    def test_processor(self, processor):
+        assert processor['model'] == 'intel i7 9700k'
+        assert processor['num_of_core'] == 4
