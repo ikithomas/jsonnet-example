@@ -158,3 +158,15 @@ class TestConditionals():
     def test_garnish(self, subject):
         assert subject['Virgin Mojito']['garnish'] is None
         assert subject['Large Mojito']['garnish'] == 'Lime wedge'
+
+
+class TestComputedFields():
+    @pytest.fixture
+    def subject(self):
+        return to_json('examples/computed-fields.jsonnet')
+
+    def test_salted(self, subject):
+        assert subject['Margarita']['garnish'] == 'Salt'
+
+    def test_unsalted(self, subject):
+        assert 'garnish' not in subject['Margarita Unsalted']
