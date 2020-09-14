@@ -14,7 +14,7 @@ def to_json(jsonnet_path, *args):
         check=True,
         universal_newlines=True
     ).stdout
-    print(json_str)
+
     return json.loads(json_str)
 
 
